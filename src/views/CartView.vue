@@ -72,8 +72,8 @@ export default {
   },
   methods: {
     removeProduct(productName) {
-      this.removeFromCart(productName)
-      this.counter--
+      this.removeFromCart(productName);
+      this.counter--;
     }
   }
 };
