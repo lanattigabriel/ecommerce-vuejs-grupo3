@@ -6,6 +6,7 @@ import LogoutView from '../views/LogoutView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import UnauthorizedView from '../views/UnauthorizedView.vue'
 import AddProductView from '../views/AddProductView.vue'
+import EditProductsView from '../views/EditProductsView.vue'
 import CartView from '../views/CartView.vue'
 import { useLoginStore } from '../stores/Login.js'
 
@@ -27,6 +28,16 @@ const router = createRouter({
       path: '/products/:id',
       name: 'productsID',
       component: ProductsView
+    },
+    {
+      path: '/editProducts',
+      name: 'editProducts',
+      component: EditProductsView
+    },
+    {
+      path: '/editProducts/:id',
+      name: 'editProductsID',
+      component: EditProductsView
     },
     {
       path: '/cart',
@@ -74,8 +85,10 @@ router.beforeEach((to, from, next) => {
   const store = useLoginStore();
   if (to.matched.some(r => r.meta.RequireAuth) && !store.isLogin) {
     next('/unauthorized')
+    return
   }
   next()
+  return
 })
 
 export default router
