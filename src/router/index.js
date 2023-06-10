@@ -27,17 +27,20 @@ const router = createRouter({
     {
       path: '/products/:id',
       name: 'productsID',
-      component: ProductsView
+      component: ProductsView,
+      meta: { RequireAuth:true }
     },
     {
       path: '/editProducts',
       name: 'editProducts',
-      component: EditProductsView
+      component: EditProductsView,
+      meta: { RequireAuth:true }
     },
     {
       path: '/editProducts/:id',
       name: 'editProductsID',
-      component: EditProductsView
+      component: EditProductsView,
+      meta: { RequireAuth:true }
     },
     {
       path: '/cart',

@@ -26,8 +26,8 @@ export default {
       <ion-button fill="clear" router-link="/">Home</ion-button>
       <ion-button fill="clear" router-link="/about">About</ion-button>
       <ion-button v-if='isLogin && hasPermission("buyProducts")' fill="clear" router-link="/products">Products</ion-button>
-      <!-- <ion-button v-if='isLogin && hasPermission("editProducts")' fill="clear" router-link="/editProducts">Edit Products</ion-button> -->
-      <!-- <ion-button v-if='isLogin && hasPermission("editProducts")' fill="clear" router-link="/addProduct">Add Product</ion-button> -->
+      <ion-button v-if='isLogin && hasPermission("editProducts")' fill="clear" router-link="/editProducts">Edit Products</ion-button>
+      <ion-button v-if='isLogin && hasPermission("editProducts")' fill="clear" router-link="/addProduct">Add Product</ion-button>
       <ion-button v-if='!isLogin' fill="clear" router-link="/login">Login</ion-button>
       <ion-button v-if='isLogin' fill="clear" router-link="/logout">Logout</ion-button>
       <ion-button v-if='isLogin && hasPermission("buyProducts")' fill="clear" router-link="/cart">Cart {{counter}}</ion-button>
