@@ -38,7 +38,8 @@
               <ion-card-content>
                 {{e.description}}
               </ion-card-content>
-              <ion-button @click='chooseProduct(e.name)'>Add To Cart</ion-button>
+              <ion-button>Edit</ion-button>
+              <ion-button>Delete</ion-button>
             </ion-card>
           </ion-col>
         </ion-row>
