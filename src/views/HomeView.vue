@@ -116,8 +116,8 @@ export default defineComponent ({
              <ion-card>
             <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
             <ion-card-header>
-              <ion-card-title>Pantalones</ion-card-title>
-              <ion-card-subtitle>Producto</ion-card-subtitle>
+              <ion-card-title>Pants</ion-card-title>
+              <ion-card-subtitle>Product</ion-card-subtitle>
             </ion-card-header>
 
             <ion-card-content>
@@ -129,8 +129,8 @@ export default defineComponent ({
              <ion-card>
             <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
             <ion-card-header>
-              <ion-card-title>Remera</ion-card-title>
-              <ion-card-subtitle>Producto</ion-card-subtitle>
+              <ion-card-title>Shirts</ion-card-title>
+              <ion-card-subtitle>Product</ion-card-subtitle>
             </ion-card-header>
 
             <ion-card-content>
@@ -142,8 +142,8 @@ export default defineComponent ({
              <ion-card>
               <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
               <ion-card-header>
-                <ion-card-title>Buzo</ion-card-title>
-                <ion-card-subtitle>Producto</ion-card-subtitle>
+                <ion-card-title>Shoes</ion-card-title>
+                <ion-card-subtitle>Product</ion-card-subtitle>
               </ion-card-header>
 
               <ion-card-content>
