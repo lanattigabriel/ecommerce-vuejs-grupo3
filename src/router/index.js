@@ -6,6 +6,7 @@ import LogoutView from '../views/LogoutView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import UnauthorizedView from '../views/UnauthorizedView.vue'
 import AddProductView from '../views/AddProductView.vue'
+import EditProductView from '../views/EditProductView.vue'
 import EditProductsView from '../views/EditProductsView.vue'
 import CartView from '../views/CartView.vue'
 import { useLoginStore } from '../stores/Login.js'
@@ -29,6 +30,12 @@ const router = createRouter({
       name: 'productsID',
       component: ProductsView,
       meta: { RequireAuth:true }
+    },
+    {
+      path: '/editProduct',
+      name: 'editProduct',
+      component: EditProductView,
+      // meta: { RequireAuth:true }
     },
     {
       path: '/editProducts',

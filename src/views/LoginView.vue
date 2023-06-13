@@ -27,7 +27,7 @@ data(){
 methods: {
   log() {
     if(this.user.email == 'admin@admin.com' && this.user.password == '1111') {
-      this.login({email: this.user.email, permissions: ["editProducts"]})
+      this.login({email: this.user.email, permissions: ["editProducts", "editProduct"]})
       // this.usuario = {email: '', password: ''}
       this.$router.push('/editProducts')
     } else if(this.user.email == 'test@test.com' && this.user.password == '1234') {

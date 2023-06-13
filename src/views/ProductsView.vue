@@ -25,7 +25,7 @@
       >
       <ion-grid>
         <ion-row>
-          <ion-col v-for="e in filteredProducts" :key="e.name">
+          <ion-col v-for="e in products" :key="e.id">
             <ion-card>
               <img
                 alt="Silhouette of mountains"
@@ -38,7 +38,7 @@
               <ion-card-content>
                 {{e.description}}
               </ion-card-content>
-              <ion-button @click='chooseProduct(e.name)'>Add To Cart</ion-button>
+              <ion-button @click='chooseProduct(e)'>Add To Cart</ion-button>
             </ion-card>
           </ion-col>
         </ion-row>
@@ -49,8 +49,8 @@
 
 <script>
 import { RouterLink, RouterView } from "vue-router";
+  import configServices from '../services/configServices';
 import { useCartStore } from '../stores/cart.js';
-import axios from 'axios';
 import {
   IonPage,
   IonContent,
@@ -89,34 +89,31 @@ export default {
   data() {
     return {
       products: [],
-      filteredProducts: []
+      product: {
+        id: '',
+        name: '', 
+        category: '',
+        description: ''
+      },
     };
   },
-  watch: {
-    '$route.params.id': function(newId) {
-      if(newId){
-        this.filteredProducts = this.products.filter(product => product.category === newId)
-      } else {
-        this.filteredProducts = {...this.products}
-      }
-    }
+  async mounted(){
+    this.loadList();
   },
   methods: {
-    chooseProduct(productName) {
-      this.addToCart(productName)
-      alert(`${productName} added to cart`)
-      this.counter++
-    }
+    chooseProduct(product) {
+      this.addToCart(product);
+      alert(`${product.name} added to cart`);
+      this.counter++;
+    },
+    async loadList(){
+      try{
+        this.products = await configServices.loadProducts();
+      } catch(error){
+        console.log(error);
+      }
+    },
   },
-  async created(){
-    try{
-      const response = await axios.get('https://6483cc78ee799e3216261ce6.mockapi.io/products')
-      this.products = response.data;
-      this.filteredProducts = response.data;
-    }catch(error){
-      console.log(error);
-    }
-  }
 };
 </script>
 

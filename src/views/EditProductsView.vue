@@ -62,7 +62,8 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/vue";
-import configServices from '../services/configServices'
+import { RouterLink, RouterView } from 'vue-router'
+import configServices from '../services/configServices';
 export default {
   components: {
     IonPage,
@@ -80,7 +81,11 @@ export default {
   data() {
     return {
       products: [],
-      product: {}
+      product: {
+        name: '', 
+        category: '',
+        description: ''
+      },
     };
   },
   async mounted(){
@@ -96,6 +101,21 @@ export default {
     }
   },
   methods: {
+    async editProduct(id) {
+      try {
+        this.product = await configServices.getProductById(id);
+        console.log(this.product);
+        // { path: `/editProduct`, state: { product: this.product } }
+        this.$router.push({ path: `/editProduct`, query: { product: JSON.stringify(this.product) } });
+        this.product = {
+          name: '', 
+          category: '',
+          description: ''
+        };
+      } catch (e) {
+        console.log(e);
+      }
+    },
     async loadProducts(){
       try{
         this.products = await configServices.loadProducts();

@@ -12,7 +12,7 @@
                 src="https://ionicframework.com/docs/img/demos/card-media.png"
               />
               <ion-card-header>
-                <ion-card-title>{{ e }}</ion-card-title>
+                <ion-card-title>{{ e.name }}</ion-card-title>
                 <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
               </ion-card-header>
               <ion-card-content>

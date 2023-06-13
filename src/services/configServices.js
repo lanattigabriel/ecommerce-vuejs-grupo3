@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'https://6483cc78ee799e3216261ce6.mockapi.io/products',
+    baseURL: 'https://6464e4e3127ad0b8f8ab352a.mockapi.io/api/v1',
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -11,14 +11,14 @@ const apiClient = axios.create({
 export default {
     async deleteProduct(id) {
         try{
-            await apiClient.delete('/' + id)
+            await apiClient.delete('/E-commerceRopa/' + id)
         }catch(e){
             throw "Error at trying to delete a product"
         }
     },
     async loadProducts(){
         try{
-            const response = await apiClient.get('/');
+            const response = await apiClient.get('/E-commerceRopa');
             return response.data
         } catch(e) {
             throw "Error with the load";
@@ -26,16 +26,24 @@ export default {
     },
     async addProduct(elem){
         try{
-            await apiClient.post('/', elem)
+            await apiClient.post('/E-commerceRopa', elem)
         }catch(e) {
-            throw "Error al agregar un elemento"
+            throw "Error at adding a product"
         }
     },
-    async editProduct(id, elem){
+    async updateProduct(id, elem){
         try{
-            await apiClient.put('/' + id, elem)
+            await apiClient.put('/E-commerceRopa/' + id, elem)
         }catch(e){
-            throw "Error al tratar de modificar un elemento"
+            throw "Error at updating a product"
+        }
+    },
+    async getProductById(id){
+        try{
+            const product = await apiClient.get('/E-commerceRopa/' + id);
+            return product.data
+        } catch(e) {
+            throw "Error with the getting the product";
         }
     }
 }

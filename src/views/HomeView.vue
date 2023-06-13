@@ -69,11 +69,11 @@ export default defineComponent ({
       <ion-modal ref="modal" trigger="open-modal" @willDismiss="onWillDismiss">
         <ion-header>
           <ion-toolbar>
-            <ion-buttons slot="start">
+            <ion-buttons>
               <ion-button @click="cancel()">Cancel</ion-button>
             </ion-buttons>
             <ion-title>Welcome</ion-title>
-            <ion-buttons slot="end">
+            <ion-buttons>
               <ion-button :strong="true" @click="confirm()">Confirm</ion-button>
             </ion-buttons>
           </ion-toolbar>
