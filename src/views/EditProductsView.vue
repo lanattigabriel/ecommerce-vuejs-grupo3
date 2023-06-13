@@ -25,7 +25,7 @@
       >
       <ion-grid>
         <ion-row>
-          <ion-col v-for="e in filteredProducts" :key="e.name">
+          <ion-col v-for="e in products" :key="e.name">
             <ion-card>
               <img
                 alt="Silhouette of mountains"
@@ -38,8 +38,8 @@
               <ion-card-content>
                 {{e.description}}
               </ion-card-content>
-              <ion-button>Edit</ion-button>
-              <ion-button>Delete</ion-button>
+              <ion-button @click="editProduct(e.id)">Edit</ion-button>
+              <ion-button @click='deleteProduct(e.id)'>Delete</ion-button>
             </ion-card>
           </ion-col>
         </ion-row>
@@ -49,9 +49,6 @@
 </template>
 
 <script>
-import { RouterLink, RouterView } from "vue-router";
-import { useCartStore } from '../stores/cart.js';
-import axios from 'axios';
 import {
   IonPage,
   IonContent,
@@ -65,7 +62,7 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/vue";
-import { storeToRefs } from 'pinia';
+import configServices from '../services/configServices'
 export default {
   components: {
     IonPage,
@@ -80,18 +77,14 @@ export default {
     IonRow,
     IonCol,
   },
-  setup() {
-    // Cart
-    const cartStore = useCartStore();
-    const { productsInCart, counter } = storeToRefs(cartStore)
-    const { addToCart } = cartStore
-    return { productsInCart, addToCart, counter };
-  },
   data() {
     return {
       products: [],
-      filteredProducts: []
+      product: {}
     };
+  },
+  async mounted(){
+    this.loadProducts();
   },
   watch: {
     '$route.params.id': function(newId) {
@@ -103,21 +96,24 @@ export default {
     }
   },
   methods: {
-    chooseProduct(productName) {
-      this.addToCart(productName)
-      alert(`${productName} added to cart`)
-      this.counter++
-    }
+    async loadProducts(){
+      try{
+        this.products = await configServices.loadProducts();
+      } catch(e){
+        console.log(e);
+      }
+    },
+    async deleteProduct(id) {
+      try{
+        await configServices.deleteProduct(id);
+        await this.loadProducts();
+        alert(`Product delete from products`)
+      }catch(e) {
+        console.log(e);
+        alert(`The delete was imposible`)
+      }
+    },
   },
-  async created(){
-    try{
-      const response = await axios.get('https://6483cc78ee799e3216261ce6.mockapi.io/products')
-      this.products = response.data;
-      this.filteredProducts = response.data;
-    }catch(error){
-      console.log(error);
-    }
-  }
 };
 </script>
 
