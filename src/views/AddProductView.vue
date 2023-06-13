@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import { IonPage, IonContent, IonButton, IonInput } from "@ionic/vue";
+import configServices from '../services/configServices';
 export default {
   components: {
     IonPage,
@@ -45,16 +45,11 @@ export default {
   },
   methods: {
     async addProduct() {
-      try {
-        const newProduct = { ...this.product };
-        await axios.post(
-          "https://6483cc78ee799e3216261ce6.mockapi.io/products",
-          newProduct
-        );
-        console.log(newProduct);
-        this.product = {}
-      } catch (error) {
-        console.log(error);
+       try {
+        await configServices.addProduct(this.product);
+        alert('Producto agregado a la lista')
+      } catch(e) {
+        console.log(e);
       }
     },
   },
