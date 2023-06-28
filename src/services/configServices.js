@@ -39,10 +39,18 @@ export default {
             throw "Error at updating a product"
         }
     },
-    async getProductById(id){
+    async getProductById(categoryId, id){
         try{
-            const product = await apiClient.get('/products/' + id);
+            const product = await apiClient.get('/products/' + categoryId + '/' + id);
             return product.data
+        } catch(e) {
+            throw "Error with the getting the product";
+        }
+    },
+    async getProductByCategoryId(categoryId){
+        try{
+            const response = await apiClient.get('/products/' + id);
+            return response.data
         } catch(e) {
             throw "Error with the getting the product";
         }

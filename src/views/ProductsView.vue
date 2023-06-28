@@ -6,21 +6,21 @@
         class="clothes-button"
         fill="outline"
         size="small"
-        router-link="/products/pants"
+        router-link="/products/1"
         >Pants</ion-button
       >
       <ion-button
         class="clothes-button"
         fill="outline"
         size="small"
-        router-link="/products/shirts"
+        router-link="/products/2"
         >Shirts</ion-button
       >
       <ion-button
         class="clothes-button"
         fill="outline"
         size="small"
-        router-link="/products/shoes"
+        router-link="/products/3"
         >Shoes</ion-button
       >
       <ion-grid>

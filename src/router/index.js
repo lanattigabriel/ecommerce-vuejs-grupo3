@@ -26,7 +26,7 @@ const router = createRouter({
       meta: { RequireAuth: true }
     },
     {
-      path: '/products/:id',
+      path: '/products/:categoryId',
       name: 'productsID',
       component: ProductsView,
       meta: { RequireAuth:true }
