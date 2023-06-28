@@ -7,6 +7,7 @@
         fill="outline"
         size="small"
         router-link="/products/1"
+        @click="loadListByCategory(1)"
         >Pants</ion-button
       >
       <ion-button
@@ -14,6 +15,7 @@
         fill="outline"
         size="small"
         router-link="/products/2"
+        @click="loadListByCategory(2)"
         >Shirts</ion-button
       >
       <ion-button
@@ -21,6 +23,7 @@
         fill="outline"
         size="small"
         router-link="/products/3"
+        @click="loadListByCategory(3)"
         >Shoes</ion-button
       >
       <ion-grid>
@@ -113,6 +116,13 @@ export default {
         console.log(error);
       }
     },
+    async loadListByCategory(categoryId){
+      try{
+        this.products = await configServices.getProductByCategoryId(categoryId);
+      } catch(error){
+        console.log(error);
+      }
+    }
   },
 };
 </script>
