@@ -12,6 +12,7 @@
 <script>
 import {IonPage, IonContent, IonInput, IonButton} from '@ionic/vue'
 import {useLoginStore} from '../stores/login.js'
+import configServices from '../services/configServices';
 export default {
 components: {IonPage, IonContent, IonInput, IonButton},
 setup() {
@@ -25,18 +26,40 @@ data(){
   }
 },
 methods: {
-  log() {
-    if(this.user.email == 'admin@admin.com' && this.user.password == '1111') {
-      this.login({email: this.user.email, permissions: ["editProducts", "editProduct"]})
-      // this.usuario = {email: '', password: ''}
-      this.$router.push('/editProducts')
-    } else if(this.user.email == 'test@test.com' && this.user.password == '1234') {
-      this.login({email: this.user.email, permissions: ["buyProducts"]})
-      // this.usuario = {email: '', password: ''}
-      this.$router.push('/products')
-    } else {
-      alert('Incorrect email or password')
+  async log() {
+    try {
+      
+    
+    const user_log = await configServices.loginUser(this.user)
+
+    if(user_log != null) {
+      if (user_log.role == "admin") {
+        this.login({email: this.user.email, permissions: ["editProducts", "editProduct"]})
+        this.$router.push('/editProducts')
+        
+      } else {
+        
+        this.login({email: this.user.email, permissions: ["buyProducts"]})
+        this.$router.push('/products')
+      }
     }
+  } catch (error) {
+    
+    alert('Incorrect email or password')
+  
+    }
+
+    // if(this.user.email == 'admin@admin.com' && this.user.password == '1111') {
+    //   this.login({email: this.user.email, permissions: ["editProducts", "editProduct"]})
+    //   // this.usuario = {email: '', password: ''}
+    //   this.$router.push('/editProducts')
+    // } else if(this.user.email == 'test@test.com' && this.user.password == '1234') {
+    //   this.login({email: this.user.email, permissions: ["buyProducts"]})
+    //   // this.usuario = {email: '', password: ''}
+    //   this.$router.push('/products')
+    // } else {
+    //   alert('Incorrect email or password')
+    // }
   }
 }
 }

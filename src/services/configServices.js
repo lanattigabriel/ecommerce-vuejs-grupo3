@@ -4,9 +4,11 @@ const apiClient = axios.create({
     baseURL: 'http://localhost:8080/api',
     headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
         
+            
     }
+    
 })
 
 export default {
@@ -91,5 +93,15 @@ export default {
         } catch(e) {
             throw "Error with the getting the product";
         }
-    }
+    },
+    async loginUser(elem){
+        try{
+            const response = await apiClient.post('/users/login', elem,{
+                withCredentials: true
+            })
+            return response.data.result
+        }catch(e){
+            throw "Error at login user"
+        }
+    },
 }
