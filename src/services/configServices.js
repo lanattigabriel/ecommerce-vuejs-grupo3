@@ -49,8 +49,8 @@ export default {
     },
     async getProductByCategoryId(categoryId){
         try{
-            const response = await apiClient.get('/products/' + id);
-            return response.data
+            const response = await apiClient.get('/products/' + categoryId);
+            return response.data.result
         } catch(e) {
             throw "Error with the getting the product";
         }
