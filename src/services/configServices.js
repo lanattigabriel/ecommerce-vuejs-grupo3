@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8080/api/',
+    baseURL: 'http://localhost:8080/api',
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ export default {
     async loadProducts(){
         try{
             const response = await apiClient.get('/products');
-            return response.data
+            return response.data.result
         } catch(e) {
             throw "Error with the load";
         }

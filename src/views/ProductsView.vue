@@ -36,7 +36,6 @@
               />
               <ion-card-header>
                 <ion-card-title>{{ e.name }}</ion-card-title>
-                <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
               </ion-card-header>
               <ion-card-content>
                 {{e.description}}
