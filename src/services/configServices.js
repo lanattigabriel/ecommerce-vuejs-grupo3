@@ -1,5 +1,7 @@
+// Axios permite realizar solicitudes HTTP como GET, POST, PUT, DELETE, etc
 import axios from 'axios';
 
+// Conexion a la mockapi
 const apiClient = axios.create({
     baseURL: 'https://6464e4e3127ad0b8f8ab352a.mockapi.io/api/v1',
     headers: {

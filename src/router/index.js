@@ -12,6 +12,8 @@ import CartView from '../views/CartView.vue'
 import { useLoginStore } from '../stores/Login.js'
 
 const router = createRouter({
+  // Esto crea un objeto de historial de navegacion lo que permite una navegacion basada en la URL en una aplicacion web 
+  // 'import.meta.env.BASE_URL' proporciona la URL base de la aplicación.
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -35,7 +37,7 @@ const router = createRouter({
       path: '/editProduct',
       name: 'editProduct',
       component: EditProductView,
-      // meta: { RequireAuth:true }
+      meta: { RequireAuth:true }
     },
     {
       path: '/editProducts',
@@ -91,6 +93,9 @@ const router = createRouter({
   ]
 })
 
+// es una condición que verifica si la ruta de destino (to) tiene una metaetiqueta (RequireAuth) y si el usuario 
+// no ha iniciado sesión (store.isLogin es falso).
+// Next('/unauthorized') redirige al usuario a la ruta /unauthorized si no cumple con los requisitos de autenticación.
 router.beforeEach((to, from, next) => {
   const store = useLoginStore();
   if (to.matched.some(r => r.meta.RequireAuth) && !store.isLogin) {

@@ -1,12 +1,15 @@
 <script>
 import { RouterLink, RouterView } from "vue-router";
 import { IonApp, IonHeader, IonContent, IonButton, IonItem } from "@ionic/vue";
+// Ayuda a la gestion del estado de la aplicacion
 import { storeToRefs } from 'pinia'
 import { useLoginStore } from "./stores/login.js";
 import { useCartStore } from './stores/cart.js';
 export default {
   components: { IonApp, IonHeader, IonContent, IonButton, IonItem },
   setup() {
+    // Un store provee metodos que permiten realizar cambios controlados en el estado y garantizar que se mantengan las reglas y 
+    // restricciones deseadas.
     // Login
     const loginStore = useLoginStore();
     const { isLogin, user } = storeToRefs(loginStore);

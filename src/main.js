@@ -17,6 +17,7 @@ import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
+// Configura la aplicacion. Tambien importa y configura los estilos CSS para los componentes Ionic
 const app = createApp(App)
 app.use(createPinia())
 app.use(IonicVue)
